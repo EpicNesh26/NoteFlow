@@ -5,7 +5,12 @@ module.exports = {
     fontFamily:{
       'Inter' : ['Inter', 'sans-serif']
     },
-    extend: {},
+    borderWidth:{
+      '0.5':'0.5px',
+    },
+    extend: {
+      borderWidth:['hover']
+    },
   },
   plugins: [],
 }
