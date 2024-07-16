@@ -8,6 +8,14 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+        .colors ul {
+            display: none;
+        }
+        .colors ul.visible {
+            display: flex;
+        }
+
     </style>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet"
@@ -27,14 +35,14 @@
             <div class="content flex w-full flex-col p-2">
 
                 <!-- Add Button -->
-                <button
+                <button id="addButton"
                     class="add m-auto my-5 rounded-full bg-black w-10 h-10 text-white flex justify-center items-center hover:bg-white hover:text-black hover:border-black hover:border-0.5 border-2">
                     <span class="material-symbols-outlined">
                         add
                     </span>
                 </button>
 
-                <!-- Button Hover Colors -->
+                <!-- Button Hover -->
                 <div class="colors flex justify-center items-center mt-5">
                     <ul class="flex flex-col items-center">
                         <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
@@ -62,6 +70,28 @@
         </div>
 
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const addButton = document.getElementById('addButton');
+            const colorList = document.querySelector('.colors ul');
+            const listItems = colorList.querySelectorAll('li');
+
+            addButton.addEventListener('mouseover', () => {
+                colorList.classList.add('visible');
+            });
+
+            addButton.addEventListener('click', () => {
+                colorList.classList.toggle('visible');
+            });
+
+            listItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    colorList.classList.remove('visible');
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>
