@@ -8,8 +8,16 @@ module.exports = {
     borderWidth:{
       '0.5':'0.5px',
     },
+
     extend: {
-      borderWidth:['hover']
+      borderWidth:['hover'],
+      colors: {
+        'custom-red': '#ffadad',
+        'custom-orange': '#ffd6a5',
+        'custom-blue': '#9bf6ff',
+        'custom-purple': '#bdb2ff',
+        'custom-pink': '#ffc6ff',
+      },
     },
   },
   plugins: [],

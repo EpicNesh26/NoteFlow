@@ -12,14 +12,25 @@
         .colors ul {
             display: none;
         }
+
         .colors ul.visible {
             display: flex;
         }
 
+        .text-gradient {
+            background: linear-gradient(to right, #ffadad, #ffd6a5, #9bf6ff, #bdb2ff, #ffc6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hidden{
+            display: none;
+        }
     </style>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="script.js"></script>
 </head>
 
 <body class="h-screen ">
@@ -66,18 +77,38 @@
                     </ul>
 
                 </div>
+                <div id="notesContainer" class="notes flex flex-wrap m-5 w-full"></div>
             </div>
         </div>
 
         <div class="Middle">
-            <div class="today">
-                Hello (Name)
 
-
+            <div class="today p-5 rounded-lg">
+                <p id="dynamicText" class="font-bold text-2xl inter-custom text-gradient"></p>
             </div>
 
-            <div class="notes">
-                All Notes
+            <!-- <div class="notes flex m-5 w-64">
+                <div class="note border-red-600 border w-64 flex flex-col align-middle h-60 p-2 rounded-xl">
+                    <div class="star flex justify-end">
+                        <span class="material-symbols-outlined">
+                            star
+                            </span>
+                    </div>
+
+                    <div class="info w-full">
+                        this is testijabdwiuawd
+                    </div>
+
+                    <div class="date">
+                        <p>Date</p>
+                    </div>
+
+                    <div class="pencil">
+                        <span class="material-symbols-outlined">
+                            edit
+                            </span>
+                    </div>
+                </div> -->
 
             </div>
         </div>
@@ -85,28 +116,6 @@
 
         <div class="third"></div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const addButton = document.getElementById('addButton');
-            const colorList = document.querySelector('.colors ul');
-            const listItems = colorList.querySelectorAll('li');
-
-            addButton.addEventListener('mouseover', () => {
-                colorList.classList.add('visible');
-            });
-
-            addButton.addEventListener('click', () => {
-                colorList.classList.toggle('visible');
-            });
-
-            listItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    colorList.classList.remove('visible');
-                });
-            });
-        });
-    </script>
-</body>
+ </body>
 
 </html>
