@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -26,6 +26,10 @@
         .hidden{
             display: none;
         }
+
+        .visible{
+            display: flex;
+        }
     </style>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet"
@@ -36,16 +40,14 @@
 <body class="h-screen ">
     <div class="container h-full flex ">
 
-        <!-- SideBar -->
         <div class="first w-[15%] border-r border-gray-800  h-full flex flex-col items-start">
             <div class="title p-3 m-2 font-bold text-sm w-[15%]">
                 NoteFlow
             </div>
 
-            <!-- SideBar Content -->
+            
             <div class="content flex w-full flex-col p-2">
 
-                <!-- Add Button -->
                 <button id="addButton"
                     class="add m-auto my-5 rounded-full bg-black w-10 h-10 text-white flex justify-center items-center hover:bg-white hover:text-black hover:border-black hover:border-0.5 border-2">
                     <span class="material-symbols-outlined">
@@ -53,7 +55,6 @@
                     </span>
                 </button>
 
-                <!-- Button Hover -->
                 <div class="colors flex justify-center items-center mt-5">
                     <ul class="flex flex-col items-center">
                         <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
@@ -77,16 +78,141 @@
                     </ul>
 
                 </div>
-                <div id="notesContainer" class="notes flex flex-wrap m-5 w-full"></div>
+            </div>
+        </div>
+        
+        <div class="Middle">
+            <div class="today p-5 rounded-lg">
+                <p id="dynamicText" class="font-bold  text-base p-[1.20rem] inter-custom text-gradient"></p>
+            </div>
+            
+            <div id="notesContainer" class="notes flex flex-wrap m-5 w-full"></div>
+            <div class="notes flex m-5 w-64">
+                <div class="note border-red-600 border w-64 flex flex-col align-middle h-60 p-2 rounded-xl">
+                    <div class="star flex justify-end">
+                        <span class="material-symbols-outlined">
+                            star
+                            </span>
+                    </div>
+
+                    <div class="info w-full">
+                        this is testijabdwiuawd
+                    </div>
+
+                    <div class="date">
+                        <p>Date</p>
+                    </div>
+
+                    <div class="pencil">
+                        <span class="material-symbols-outlined">
+                            edit
+                            </span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="third"></div>
+    </div>
+ </body>
+
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes App</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+        .colors ul {
+            display: none;
+        }
+
+        .colors ul.visible {
+            display: flex;
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #ffadad, #ffd6a5, #9bf6ff, #bdb2ff, #ffc6ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .visible {
+            display: flex;
+        }
+    </style>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="script.js"></script>
+</head>
+
+<body class="h-screen ">
+    <div class="container h-full flex ">
+
+        <!-- SideBar -->
+        <div class="first w-[15%] border-r border-gray-800  h-full flex flex-col items-start">
+            <div class="title p-3 m-2 font-bold text-sm w-[15%]">
+                NoteFlow
+            </div>
+
+
+            <div class="content flex w-full flex-col p-2">
+
+                <!-- Add Button -->
+                <button id="addButton"
+                    class="add m-auto my-5 rounded-full bg-black w-10 h-10 text-white flex justify-center items-center hover:bg-white hover:text-black hover:border-black hover:border-0.5 border-2">
+                    <span class="material-symbols-outlined">
+                        add
+                    </span>
+                </button>
+
+                <!-- Button Hover -->
+                <div class="colors flex justify-center items-center mt-5">
+                    <ul class="flex flex-col items-center">
+                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
+                            style="background-color: #ffadad;" data-color="#ffadad"></li>
+                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
+                            style="background-color: #ffd6a5;" data-color="#ffd6a5"></li>
+                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
+                            style="background-color: #fdffb6;" data-color="#fdffb6"></li>
+                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
+                            style="background-color: #caffbf;" data-color="#caffbf"></li>
+                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
+                            style="background-color: #9bf6ff;" data-color="#9bf6ff"></li>
+                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
+                            style="background-color: #a0c4ff;" data-color="#a0c4ff"></li>
+                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
+                            style="background-color: #bdb2ff;" data-color="#bdb2ff"></li>
+                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
+                            style="background-color: #ffc6ff;" data-color="#ffc6ff"></li>
+                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
+                            style="background-color: #fffffc;" data-color="#fffffc"></li>
+                    </ul>
+
+                </div>
             </div>
         </div>
 
         <div class="Middle">
-
             <div class="today p-5 rounded-lg">
-                <p id="dynamicText" class="font-bold text-2xl inter-custom text-gradient"></p>
+                <p id="dynamicText" class="font-bold text-base p-[1.20rem] inter-custom text-gradient"></p>
             </div>
 
+            <div id="notesContainer" class="notes flex flex-wrap m-5 w-full"></div>
             <!-- <div class="notes flex m-5 w-64">
                 <div class="note border-red-600 border w-64 flex flex-col align-middle h-60 p-2 rounded-xl">
                     <div class="star flex justify-end">
@@ -116,6 +242,6 @@
 
         <div class="third"></div>
     </div>
- </body>
+</body>
 
 </html>
