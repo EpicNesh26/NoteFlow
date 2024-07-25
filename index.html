@@ -153,6 +153,58 @@
         .visible {
             display: flex;
         }
+
+        .note .info {
+            height: 80%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            scrollbar-width: thin;
+            /* Firefox */
+            scrollbar-color: #ccc #f0f0f0;
+            /* Firefox */
+        }
+
+        .note .info::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .note .info::-webkit-scrollbar-track {
+            background: #f0f0f0;
+        }
+
+        .note .info::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 10px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .note .info {
+            position: relative;
+            padding-right: 20px;
+            /* Extra space for scrollbar */
+        }
+
+        .note .info:empty:before {
+            content: 'Click here to edit your note...';
+            color: #aaa;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            pointer-events: none;
+            padding: 0 10px;
+            /* Padding for the placeholder text */
+        }
+
+        .note .info[contenteditable="true"]:focus:before {
+            content: '';
+        }
+
+        .note .contentss {
+            height: 20%;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
     </style>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet"
@@ -212,35 +264,66 @@
                 <p id="dynamicText" class="font-bold text-base p-[1.20rem] inter-custom text-gradient"></p>
             </div>
 
-            <div id="notesContainer" class="notes flex flex-wrap m-5 w-full"></div>
-            <!-- <div class="notes flex m-5 w-64">
-                <div class="note border-red-600 border w-64 flex flex-col align-middle h-60 p-2 rounded-xl">
+            <!-- <div id="notesContainer" class="notes flex flex-wrap m-5 w-full"></div>
+            <div class="notes flex m-5 w-64">
+                <div class="note border-red-600 border w-64 flex flex-col align-middle h-60 p-2 rounded-xl ">
                     <div class="star flex justify-end">
                         <span class="material-symbols-outlined">
                             star
                             </span>
                     </div>
 
-                    <div class="info w-full">
+                    <div class="info w-full flex relative">
                         this is testijabdwiuawd
                     </div>
 
-                    <div class="date">
-                        <p>Date</p>
+                    <div class="contentss flex flex-row relative bottom-0">
+
+                        <div class="date ">
+                            <p>Date</p>
+                        </div>
+    
+                        <div class="pencil absolute right-0">
+                            <span class="material-symbols-outlined">
+                                edit
+                                </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div> -->
+            <div id="notesContainer" class="notes flex flex-wrap m-5 w-full"></div>
+            <!-- <div class="notes flex m-5 w-64">
+                <div class="note border-red-600 border w-64 flex flex-col align-middle h-60 p-2 rounded-xl">
+                    <div class="star flex justify-end">
+                        <span class="material-symbols-outlined pb-1">
+                            star
+                            </span>
                     </div>
 
-                    <div class="pencil">
-                        <span class="material-symbols-outlined">
-                            edit
-                            </span>
+                    <div class="info w-full flex relative overflow-y-auto p-2 inter-custom">
+
+                    </div>
+
+                    <div class="contentss flex flex-row relative bottom-0">
+
+                        <div class="date p-2">
+                            <p>Date</p>
+                        </div>
+
+                        <div class="pencil absolute right-0">
+                            <span class="material-symbols-outlined">
+                                edit
+                                </span>
+                        </div>
                     </div>
                 </div> -->
 
-            </div>
         </div>
+    </div>
 
 
-        <div class="third"></div>
+    <div class="third"></div>
     </div>
 </body>
 
