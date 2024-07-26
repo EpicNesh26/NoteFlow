@@ -1,125 +1,3 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes App</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
-
-        .colors ul {
-            display: none;
-        }
-
-        .colors ul.visible {
-            display: flex;
-        }
-
-        .text-gradient {
-            background: linear-gradient(to right, #ffadad, #ffd6a5, #9bf6ff, #bdb2ff, #ffc6ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hidden{
-            display: none;
-        }
-
-        .visible{
-            display: flex;
-        }
-    </style>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <script src="script.js"></script>
-</head>
-
-<body class="h-screen ">
-    <div class="container h-full flex ">
-
-        <div class="first w-[15%] border-r border-gray-800  h-full flex flex-col items-start">
-            <div class="title p-3 m-2 font-bold text-sm w-[15%]">
-                NoteFlow
-            </div>
-
-            
-            <div class="content flex w-full flex-col p-2">
-
-                <button id="addButton"
-                    class="add m-auto my-5 rounded-full bg-black w-10 h-10 text-white flex justify-center items-center hover:bg-white hover:text-black hover:border-black hover:border-0.5 border-2">
-                    <span class="material-symbols-outlined">
-                        add
-                    </span>
-                </button>
-
-                <div class="colors flex justify-center items-center mt-5">
-                    <ul class="flex flex-col items-center">
-                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #ffadad;"></li>
-                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #ffd6a5;"></li>
-                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #fdffb6;"></li>
-                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #caffbf;"></li>
-                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #9bf6ff;"></li>
-                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #a0c4ff;"></li>
-                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #bdb2ff;"></li>
-                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #ffc6ff;"></li>
-                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #fffffc;"></li>
-                    </ul>
-
-                </div>
-            </div>
-        </div>
-        
-        <div class="Middle">
-            <div class="today p-5 rounded-lg">
-                <p id="dynamicText" class="font-bold  text-base p-[1.20rem] inter-custom text-gradient"></p>
-            </div>
-            
-            <div id="notesContainer" class="notes flex flex-wrap m-5 w-full"></div>
-            <div class="notes flex m-5 w-64">
-                <div class="note border-red-600 border w-64 flex flex-col align-middle h-60 p-2 rounded-xl">
-                    <div class="star flex justify-end">
-                        <span class="material-symbols-outlined">
-                            star
-                            </span>
-                    </div>
-
-                    <div class="info w-full">
-                        this is testijabdwiuawd
-                    </div>
-
-                    <div class="date">
-                        <p>Date</p>
-                    </div>
-
-                    <div class="pencil">
-                        <span class="material-symbols-outlined">
-                            edit
-                            </span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-
-        <div class="third"></div>
-    </div>
- </body>
-
-</html> -->
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -154,56 +32,31 @@
             display: flex;
         }
 
-        .note .info {
+        .info {
+            width: 100%;
             height: 80%;
             overflow-y: auto;
             overflow-x: hidden;
             scrollbar-width: thin;
-            /* Firefox */
             scrollbar-color: #ccc #f0f0f0;
-            /* Firefox */
+            padding: 10px;
+            border: none;
+            outline: none;
+            word-wrap: break-word;
         }
 
-        .note .info::-webkit-scrollbar {
+        .info::-webkit-scrollbar {
             width: 6px;
         }
 
-        .note .info::-webkit-scrollbar-track {
+        .info::-webkit-scrollbar-track {
             background: #f0f0f0;
         }
 
-        .note .info::-webkit-scrollbar-thumb {
+        .info::-webkit-scrollbar-thumb {
             background-color: #ccc;
             border-radius: 10px;
             border: 1px solid #f0f0f0;
-        }
-
-        .note .info {
-            position: relative;
-            padding-right: 20px;
-            /* Extra space for scrollbar */
-        }
-
-        .note .info:empty:before {
-            content: 'Click here to edit your note...';
-            color: #aaa;
-            position: absolute;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            pointer-events: none;
-            padding: 0 10px;
-            /* Padding for the placeholder text */
-        }
-
-        .note .info[contenteditable="true"]:focus:before {
-            content: '';
-        }
-
-        .note .contentss {
-            height: 20%;
-            justify-content: space-between;
-            align-items: flex-end;
         }
     </style>
     <link rel="stylesheet" href="css/style.css">
@@ -212,15 +65,14 @@
     <script src="script.js"></script>
 </head>
 
-<body class="h-screen ">
+<body class="h-screen">
     <div class="container h-full flex ">
 
         <!-- SideBar -->
-        <div class="first w-[15%] border-r border-gray-800  h-full flex flex-col items-start">
+        <div class="first w-[15%] border-r border-gray-800 h-full flex flex-col items-start">
             <div class="title p-3 m-2 font-bold text-sm w-[15%]">
                 NoteFlow
             </div>
-
 
             <div class="content flex w-full flex-col p-2">
 
@@ -236,94 +88,36 @@
                 <div class="colors flex justify-center items-center mt-5">
                     <ul class="flex flex-col items-center">
                         <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #ffadad;" data-color="#ffadad"></li>
+                            style="background-color: #ffadad;"></li>
                         <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #ffd6a5;" data-color="#ffd6a5"></li>
+                            style="background-color: #ffd6a5;"></li>
                         <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #fdffb6;" data-color="#fdffb6"></li>
+                            style="background-color: #fdffb6;"></li>
                         <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #caffbf;" data-color="#caffbf"></li>
+                            style="background-color: #caffbf;"></li>
                         <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #9bf6ff;" data-color="#9bf6ff"></li>
+                            style="background-color: #9bf6ff;"></li>
                         <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #a0c4ff;" data-color="#a0c4ff"></li>
+                            style="background-color: #a0c4ff;"></li>
                         <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #bdb2ff;" data-color="#bdb2ff"></li>
+                            style="background-color: #bdb2ff;"></li>
                         <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #ffc6ff;" data-color="#ffc6ff"></li>
-                        <li class="w-4 h-4 my-1 rounded-full flex items-center justify-center"
-                            style="background-color: #fffffc;" data-color="#fffffc"></li>
+                            style="background-color: #ffc6ff;"></li>
+                        <li class=" w-4 h-4 my-1 rounded-full flex items-center justify-center"
+                            style="background-color: #fffffc;"></li>
                     </ul>
 
                 </div>
             </div>
         </div>
 
-        <div class="Middle">
+        <div class="Middle w-[85%]">
             <div class="today p-5 rounded-lg">
                 <p id="dynamicText" class="font-bold text-base p-[1.20rem] inter-custom text-gradient"></p>
             </div>
 
-            <!-- <div id="notesContainer" class="notes flex flex-wrap m-5 w-full"></div>
-            <div class="notes flex m-5 w-64">
-                <div class="note border-red-600 border w-64 flex flex-col align-middle h-60 p-2 rounded-xl ">
-                    <div class="star flex justify-end">
-                        <span class="material-symbols-outlined">
-                            star
-                            </span>
-                    </div>
-
-                    <div class="info w-full flex relative">
-                        this is testijabdwiuawd
-                    </div>
-
-                    <div class="contentss flex flex-row relative bottom-0">
-
-                        <div class="date ">
-                            <p>Date</p>
-                        </div>
-    
-                        <div class="pencil absolute right-0">
-                            <span class="material-symbols-outlined">
-                                edit
-                                </span>
-                        </div>
-                    </div>
-                </div>
-
-            </div> -->
-            <div id="notesContainer" class="notes flex flex-wrap m-5 w-full"></div>
-            <!-- <div class="notes flex m-5 w-64">
-                <div class="note border-red-600 border w-64 flex flex-col align-middle h-60 p-2 rounded-xl">
-                    <div class="star flex justify-end">
-                        <span class="material-symbols-outlined pb-1">
-                            star
-                            </span>
-                    </div>
-
-                    <div class="info w-full flex relative overflow-y-auto p-2 inter-custom">
-
-                    </div>
-
-                    <div class="contentss flex flex-row relative bottom-0">
-
-                        <div class="date p-2">
-                            <p>Date</p>
-                        </div>
-
-                        <div class="pencil absolute right-0">
-                            <span class="material-symbols-outlined">
-                                edit
-                                </span>
-                        </div>
-                    </div>
-                </div> -->
-
+            <div id="notesContainer" class="notes w-[97%] flex flex-wrap m-5  inter-custom mr-0"></div>
         </div>
-    </div>
-
-
-    <div class="third"></div>
     </div>
 </body>
 
