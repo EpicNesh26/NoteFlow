@@ -135,6 +135,27 @@ document.addEventListener('DOMContentLoaded', function () {
     const colorOptions = colors.querySelectorAll('li');
     let selectedColor = '';
 
+
+    const darkModeIcon = darkModeSwitch.querySelector('.dark-mode-icon');
+    const brightnessModeIcon = darkModeSwitch.querySelector('.brightness-mode-icon');
+
+    // Load mode from localStorage
+    const darkModeEnabled = JSON.parse(localStorage.getItem('darkModeEnabled'));
+    if (darkModeEnabled) {
+        document.body.classList.add('dark-mode');
+        darkModeIcon.classList.add('hidden');
+        brightnessModeIcon.classList.remove('hidden');
+    }
+
+    darkModeSwitch.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        darkModeIcon.classList.toggle('hidden');
+        brightnessModeIcon.classList.toggle('hidden');
+        localStorage.setItem('darkModeEnabled', document.body.classList.contains('dark-mode'));
+    });
+
+    
+
     addButton.addEventListener('click', () => {
         colors.classList.toggle('visible');
     });
@@ -256,6 +277,7 @@ delete
     function getRandomText(arr) {
         return arr[Math.floor(Math.random() * arr.length)];
     }
+    
 
     document.getElementById('dynamicText').innerText = getRandomText(texts);
 });

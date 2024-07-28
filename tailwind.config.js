@@ -8,6 +8,7 @@ module.exports = {
     borderWidth:{
       '0.5':'0.5px',
     },
+    darkMode:'class',
 
     extend: {
       borderWidth:['hover'],
