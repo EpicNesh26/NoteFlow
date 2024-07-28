@@ -9,6 +9,10 @@ NoteFlow is a simple and elegant note-taking web application that allows users t
 **Dark Mode**: Switch between light and dark modes to suit your viewing preference.
 **Persistent State**: Notes and the selected mode (light/dark) are saved and loaded from local storage, ensuring that your preferences and notes persist across sessions.
 
+
+### Live Preview:
+https://epicnesh26.github.io/NoteFlow/
+
 ### Installation
 1. Clone the repository:
 ```sh
