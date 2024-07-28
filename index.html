@@ -69,14 +69,15 @@
 
         body.dark-mode {
             background-color: #000000d9;
+            transition: background-color 1s, color 1s;
         }
 
         body.dark-mode .note {
-            border-color: rgb(122, 142, 169);
+            border-color: rgba(18, 21, 24, 0.766);
         }
 
         body.dark-mode .first {
-            border-color: rgb(122, 142, 169);
+            border-color: rgba(255, 255, 255, 0.156);
         }
 
         body.dark-mode .title {
@@ -91,6 +92,9 @@
             color: white;
         }
 
+        body.dark-gradient {
+            background: linear-gradient(225deg, #010101b9, #050607de, #000000);
+        }
 
         .brightness-mode-icon {
             filter: brightness(0) invert(1);
@@ -166,8 +170,7 @@
                 <div class="nightmode flex justify-end absolute right-5">
                     <button id="darkModeSwitch">
                         <img src="images/night-mode.png" alt="Night Mode" class="dark-mode-icon">
-                        <img src="images/brightness.png" alt="Brightness Mode"
-                            class="brightness-mode-icon  hidden">
+                        <img src="images/brightness.png" alt="Brightness Mode" class="brightness-mode-icon  hidden">
                     </button>
                 </div>
             </div>
