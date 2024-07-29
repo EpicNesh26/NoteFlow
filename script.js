@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('darkModeEnabled', document.body.classList.contains('dark-mode'));
     });
 
-    
+
 
     addButton.addEventListener('click', () => {
         colors.classList.toggle('visible');
@@ -56,10 +56,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="date p-2 text-xs">
                     <p>${date}</p>
                 </div>
+                
+                
+                <div class="export flex align-middle absolute right-10 cursor-pointer pt-1.5 p-1 rounded-full items-center" >
+                    <span class="material-symbols-outlined" style="font-size:large">
+                            ios_share
+                    </span>
+                </div>
                 <div class="pencil flex align-middle absolute right-0 bg-white cursor-pointer p-1 rounded-full items-center">
                     <span class="material-symbols-outlined">
-delete
-</span>
+                            delete
+                    </span>
                 </div>
             </div>
         `;
@@ -68,6 +75,7 @@ delete
 
         const infoDiv = note.querySelector('.info');
         const deleteIcon = note.querySelector('.pencil span')
+        const exportIcon = note.querySelector('.export span')
         // const starIcon = note.querySelector('.star span');
 
         // starIcon.addEventListener('click', function () {
@@ -79,9 +87,15 @@ delete
         //     saveNotes();
         // });
 
-        deleteIcon.addEventListener('click', function(){
+        deleteIcon.addEventListener('click', function () {
             note.remove();
             saveNotes();
+        })
+
+        exportIcon.addEventListener('click',function(){
+            const notesContent = infoDiv.innerHTML.trim();
+            downloadAsText(notesContent, date); 
+            // downloadAsImage(notesContent,date);
         })
 
         infoDiv.addEventListener('focus', function () {
@@ -124,6 +138,25 @@ delete
         });
     }
 
+    function downloadAsText(content, date) {
+        const blob = new Blob([content], { type: 'text/plain' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `note_${date}.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
+    }
+
+    function downloadAsImage(noteElement) {
+        html2canvas(noteElement).then(canvas => {
+            const a = document.createElement('a');
+            a.href = canvas.toDataURL('image/png');
+            a.download = `note_${new Date().toLocaleDateString()}.png`;
+            a.click();
+        });
+    }
+
     // Load notes from localStorage on page load
     loadNotes();
 
@@ -148,7 +181,7 @@ delete
     function getRandomText(arr) {
         return arr[Math.floor(Math.random() * arr.length)];
     }
-    
+
 
     document.getElementById('dynamicText').innerText = getRandomText(texts);
 });
