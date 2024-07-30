@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const colorOptions = colors.querySelectorAll('li');
     let selectedColor = '';
 
-    const darkModeSwitch = document.getElementById('darkModeSwitch')
+    const darkModeSwitch = document.getElementById('darkModeSwitch');
     const darkModeIcon = darkModeSwitch.querySelector('.dark-mode-icon');
     const brightnessModeIcon = darkModeSwitch.querySelector('.brightness-mode-icon');
 
@@ -25,8 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('darkModeEnabled', document.body.classList.contains('dark-mode'));
     });
 
-
-
     addButton.addEventListener('click', () => {
         colors.classList.toggle('visible');
     });
@@ -39,7 +37,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    function createNote(content = 'Click here to edit your note...', color = selectedColor, date = new Date().toLocaleDateString(), isStarred = false) {
+    let noteIdCounter = 0;
+
+    function createNote(content = 'Click here to edit your note...', color = selectedColor, date = new Date().toLocaleDateString(), isStarred = false, id = null) {
         if (!color) return;
 
         const notesContainer = document.getElementById('notesContainer');
@@ -47,8 +47,17 @@ document.addEventListener('DOMContentLoaded', function () {
         note.classList.add('note', 'border', 'w-64', 'flex', 'flex-col', 'align-middle', 'h-48', 'p-2', 'rounded-xl', 'm-2');
         note.style.backgroundColor = color;
 
+        if (!id) {
+            id = noteIdCounter++;
+        }
+        note.dataset.id = id;
+
         note.innerHTML = `
-            
+            <div class="star flex align-middle relative p-0 right-1.5 rounded-full items-center">
+                <span class="material-symbols-outlined absolute cursor-pointer right-0 pt-5 z-10" style="font-size:larger; color: ${isStarred ? 'gold' : 'initial'};">
+                    star
+                </span>
+            </div>
             <div class="info w-full flex relative overflow-wrap-anywhere whitespace-normal overflow-scroll" contenteditable="true">
                 ${content}
             </div>
@@ -56,47 +65,69 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="date p-2 text-xs">
                     <p>${date}</p>
                 </div>
-                
-                
-                <div class="export flex align-middle absolute right-10 cursor-pointer pt-1.5 p-1 rounded-full items-center" >
+                <div class="export flex align-middle absolute right-10 cursor-pointer pt-1.5 p-1 rounded-full items-center">
                     <span class="material-symbols-outlined" style="font-size:large">
-                            ios_share
+                        ios_share
                     </span>
                 </div>
                 <div class="pencil flex align-middle absolute right-0 bg-white cursor-pointer p-1 rounded-full items-center">
                     <span class="material-symbols-outlined">
-                            delete
+                        delete
                     </span>
                 </div>
             </div>
         `;
 
-        notesContainer.appendChild(note);
+        if (isStarred) {
+            notesContainer.insertBefore(note, notesContainer.firstChild);
+        } else {
+            const starredNotes = Array.from(notesContainer.querySelectorAll('.note .star span[style*="gold"]')).map(el => el.closest('.note'));
+            if (starredNotes.length > 0) {
+                notesContainer.insertBefore(note, starredNotes[starredNotes.length - 1].nextSibling);
+            } else {
+                notesContainer.insertBefore(note, notesContainer.firstChild);
+            }
+        }
 
         const infoDiv = note.querySelector('.info');
-        const deleteIcon = note.querySelector('.pencil span')
-        const exportIcon = note.querySelector('.export span')
-        // const starIcon = note.querySelector('.star span');
-
-        // starIcon.addEventListener('click', function () {
-        //     if (this.style.color === 'gold') {
-        //         this.style.color = '';
-        //     } else {
-        //         this.style.color = 'gold';
-        //     }
-        //     saveNotes();
-        // });
+        const deleteIcon = note.querySelector('.pencil span');
+        const exportIcon = note.querySelector('.export span');
+        const starIcon = note.querySelector('.star span');
 
         deleteIcon.addEventListener('click', function () {
             note.remove();
             saveNotes();
-        })
+        });
 
-        exportIcon.addEventListener('click',function(){
+        exportIcon.addEventListener('click', function () {
             const notesContent = infoDiv.innerHTML.trim();
-            downloadAsText(notesContent, date); 
-            // downloadAsImage(notesContent,date);
-        })
+            downloadAsText(notesContent, date);
+        });
+
+        starIcon.addEventListener('click', function () {
+            const starredNotes = document.querySelectorAll('.note .star span[style*="gold"]').length;
+            if (!isStarred && starredNotes >= 5) {
+                alert('You can only star up to 5 notes.');
+                return;
+            }
+
+            isStarred = !isStarred;
+            starIcon.style.color = isStarred ? 'gold' : 'initial';
+
+            note.remove();
+            if (isStarred) {
+                notesContainer.insertBefore(note, notesContainer.firstChild);
+            } else {
+                const starredNotes = Array.from(notesContainer.querySelectorAll('.note .star span[style*="gold"]')).map(el => el.closest('.note'));
+                if (starredNotes.length > 0) {
+                    notesContainer.insertBefore(note, starredNotes[starredNotes.length - 1].nextSibling);
+                } else {
+                    notesContainer.insertBefore(note, notesContainer.firstChild);
+                }
+            }
+
+            saveNotes();
+        });
 
         infoDiv.addEventListener('focus', function () {
             if (this.textContent.trim() === 'Click here to edit your note...') {
@@ -115,7 +146,6 @@ document.addEventListener('DOMContentLoaded', function () {
             saveNotes();
         });
 
-
         saveNotes();
     }
 
@@ -125,16 +155,22 @@ document.addEventListener('DOMContentLoaded', function () {
             const content = note.querySelector('.info').innerHTML.trim();
             const color = note.style.backgroundColor;
             const date = note.querySelector('.date p').textContent;
-            // const isStarred = note.querySelector('.star span').style.color === 'gold';
-            notes.push({ content, color, date });
+            const isStarred = note.querySelector('.star span').style.color === 'gold';
+            const id = note.dataset.id;
+            notes.push({ content, color, date, isStarred, id });
         });
         localStorage.setItem('notes', JSON.stringify(notes));
     }
 
     function loadNotes() {
         const notes = JSON.parse(localStorage.getItem('notes')) || [];
+        notes.sort((a, b) => {
+            if (a.isStarred && !b.isStarred) return -1;
+            if (!a.isStarred && b.isStarred) return 1;
+            return b.id - a.id; // Newest first
+        });
         notes.forEach(note => {
-            createNote(note.content, note.color, note.date);
+            createNote(note.content, note.color, note.date, note.isStarred, note.id);
         });
     }
 
@@ -148,18 +184,7 @@ document.addEventListener('DOMContentLoaded', function () {
         URL.revokeObjectURL(url);
     }
 
-    function downloadAsImage(noteElement) {
-        html2canvas(noteElement).then(canvas => {
-            const a = document.createElement('a');
-            a.href = canvas.toDataURL('image/png');
-            a.download = `note_${new Date().toLocaleDateString()}.png`;
-            a.click();
-        });
-    }
-
-    // Load notes from localStorage on page load
-    loadNotes();
-
+    // Dynamic text for the heading
     const texts = [
         "Welcome to NoteFlow!",
         "Hello and Welcome to Your Notes!",
@@ -175,13 +200,15 @@ document.addEventListener('DOMContentLoaded', function () {
         "Hello! Let's Turn Ideas into Notes!",
         "Your Ideas, Perfectly Organized!",
         "Capture Every Thought with NotesApp!",
-        "Unlock Your Creativity with NotesApp!",
+        "Unlock Your Creativity with NotesApp!"
     ];
 
     function getRandomText(arr) {
         return arr[Math.floor(Math.random() * arr.length)];
     }
 
-
     document.getElementById('dynamicText').innerText = getRandomText(texts);
+
+    // Load notes from localStorage on page load
+    loadNotes();
 });
