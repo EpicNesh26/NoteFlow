@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', function () {
         note.dataset.id = id;
 
         note.innerHTML = `
-            <div class="star flex align-middle relative p-0 right-1.5 rounded-full items-center">
-                <span class="material-symbols-outlined absolute cursor-pointer right-0 pt-5 z-10" style="font-size:larger; color: ${isStarred ? 'gold' : 'initial'};">
+            <div class="star flex align-middle relative p-0 right-1 rounded-full items-center">
+                <span class="material-symbols-outlined absolute cursor-pointer right-0 pt-5 z-10" style="font-size:x-larger; color: ${isStarred ? 'gold' : 'initial'};">
                     star
                 </span>
             </div>
@@ -155,7 +155,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const content = note.querySelector('.info').innerHTML.trim();
             const color = note.style.backgroundColor;
             const date = note.querySelector('.date p').textContent;
-            const isStarred = note.querySelector('.star span').style.color === 'gold';
+            const isStarred = note.querySelector('.star span').style.color === 'yellow';
             const id = note.dataset.id;
             notes.push({ content, color, date, isStarred, id });
         });
