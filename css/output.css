@@ -612,6 +612,11 @@ video {
   margin: auto;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .my-1 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
@@ -622,11 +627,6 @@ video {
   margin-bottom: 1.25rem;
 }
 
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 .mr-0 {
   margin-right: 0px;
 }
@@ -635,12 +635,16 @@ video {
   margin-top: 0.5rem;
 }
 
+.mt-4 {
+  margin-top: 1rem;
+}
+
 .mt-5 {
   margin-top: 1.25rem;
 }
 
-.mt-4 {
-  margin-top: 1rem;
+.mb-5 {
+  margin-bottom: 1.25rem;
 }
 
 .flex {
@@ -675,6 +679,10 @@ video {
   width: 1rem;
 }
 
+.w-40 {
+  width: 10rem;
+}
+
 .w-\[15\%\] {
   width: 15%;
 }
@@ -689,26 +697,6 @@ video {
 
 .w-full {
   width: 100%;
-}
-
-.w-\[100px\] {
-  width: 100px;
-}
-
-.w-\[50\%\] {
-  width: 50%;
-}
-
-.w-40 {
-  width: 10rem;
-}
-
-.flex-1 {
-  flex: 1 1 0%;
-}
-
-.flex-grow {
-  flex-grow: 1;
 }
 
 .flex-col {
@@ -783,10 +771,6 @@ video {
   padding-bottom: 0.75rem;
 }
 
-.pt-4 {
-  padding-top: 1rem;
-}
-
 .text-\[1\.5rem\] {
   font-size: 1.5rem;
 }
@@ -850,22 +834,22 @@ video {
 }
 
 @media (min-width: 640px) {
-  .sm\:block {
-    display: block;
+  .sm\:w-\[85\%\] {
+    width: 85%;
   }
 
-  .sm\:inline-block {
-    display: inline-block;
-  }
-
-  .sm\:w-\[10\%\] {
-    width: 10%;
+  .sm\:flex-row {
+    flex-direction: row;
   }
 }
 
 @media (min-width: 768px) {
   .md\:mt-0 {
     margin-top: 0px;
+  }
+
+  .md\:w-\[10\%\] {
+    width: 10%;
   }
 
   .md\:w-\[15\%\] {
@@ -876,32 +860,24 @@ video {
     width: 85%;
   }
 
-  .md\:w-1\/6 {
-    width: 16.666667%;
-  }
-
-  .md\:w-5\/6 {
-    width: 83.333333%;
-  }
-
-  .md\:w-\[10\%\] {
-    width: 10%;
-  }
-
-  .md\:w-8 {
-    width: 2rem;
+  .md\:w-auto {
+    width: auto;
   }
 
   .md\:w-full {
     width: 100%;
   }
 
-  .md\:w-auto {
-    width: auto;
+  .md\:w-\[97\%\] {
+    width: 97%;
   }
 
   .md\:flex-row {
     flex-direction: row;
+  }
+
+  .md\:flex-wrap {
+    flex-wrap: wrap;
   }
 
   .md\:items-start {
@@ -910,10 +886,5 @@ video {
 
   .md\:p-3 {
     padding: 0.75rem;
-  }
-
-  .md\:px-0 {
-    padding-left: 0px;
-    padding-right: 0px;
   }
 }
