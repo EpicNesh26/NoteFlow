@@ -265,13 +265,13 @@
 <body class="h-screen">
     <div class="container h-full flex flex-col md:flex-row">
         <div class="first  w-[15%] border-b md:border-r border-gray-800 flex flex-col items-center md:items-start">
-            <div class="title p-3 m-2 font-bold text-sm w-full flex justify-center">
+            <div class="title p-3 m-2 font-bold text-sm w-full flex ml-0 justify-center">
                 NoteFlow
             </div>
 
-            <div class="flex flex-col items-center p-2 pl-8 w-[100px]">
+            <div class="flex flex-col items-center md:p-2 md:pl-8 w-[100px]">
                 <button id="addButton"
-                    class="add mx-auto my-5 rounded-full bg-black w-10 h-10 text-white flex justify-center items-center hover:bg-white hover:text-black hover:border-black hover:border-0.5 border-2">
+                    class="add mx-auto md:my-5 rounded-full bg-black w-10 h-10 text-white flex justify-center items-center hover:bg-white hover:text-black hover:border-black hover:border-0.5 border-2">
                     <span class="material-symbols-outlined">
                         add
                     </span>
@@ -303,7 +303,7 @@
         </div>
 
         <div class="middle w-full md:w-[85%] mt-4 md:mt-0">
-            <div class="today p-5 rounded-lg flex justify-between items-center">
+            <div class="today p-5 py-0 md:pt-5 rounded-lg flex justify-between items-center">
                 <p id="dynamicText" class="text-[1.5rem] font-bold inter-custom text-gradient"></p>
 
                 <div class="nightmode">
@@ -314,7 +314,7 @@
                 </div>
             </div>
 
-            <div id="notesContainer" class="notes w-[97%] flex flex-col md:flex-wrap md:flex-row m-5 inter-custom">
+            <div id="notesContainer" class="notes w-[97%] flex flex-col sm:flex-wrap md:flex-row m-5 inter-custom  items-center md:items-start">
                 <!-- Notes will be dynamically inserted here -->
             </div>
         </div>
