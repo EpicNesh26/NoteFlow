@@ -12,14 +12,16 @@ document.addEventListener('DOMContentLoaded', function () {
     const darkModeEnabled = JSON.parse(localStorage.getItem('darkModeEnabled'));
     if (darkModeEnabled) {
         document.body.classList.add('dark-mode');
-        document.body.classList.add('dark-gradient');
+        // document.body.classList.add('dark-gradient');
+        document.body.classList.add('thiscolor');
         darkModeIcon.classList.add('hidden');
         brightnessModeIcon.classList.remove('hidden');
     }
 
     darkModeSwitch.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
-        document.body.classList.toggle('dark-gradient');
+        // document.body.classList.toggle('dark-gradient');
+        document.body.classList.toggle('thiscolor');
         darkModeIcon.classList.toggle('hidden');
         brightnessModeIcon.classList.toggle('hidden');
         localStorage.setItem('darkModeEnabled', document.body.classList.contains('dark-mode'));
@@ -148,6 +150,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         saveNotes();
     }
+    
 
     function saveNotes() {
         const notes = [];
@@ -207,6 +210,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return arr[Math.floor(Math.random() * arr.length)];
     }
 
+    
     document.getElementById('dynamicText').innerText = getRandomText(texts);
 
     // Load notes from localStorage on page load
